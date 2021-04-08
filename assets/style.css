@@ -8,12 +8,16 @@ body {
   color: #fff;
   padding: 0;
   margin: 0; }
+  body h1 {
+    color: #454545;
+    font-size: 30px;
+    margin-left: 20px; }
 
 main {
   padding: 20px; }
-  main h1 {
-    color: #454545;
-    font-size: 30px; }
+
+.onScroll {
+  overflow: hidden; }
 
 .containerButton {
   display: flex;
@@ -47,6 +51,7 @@ main {
   margin-bottom: 20px;
   padding: 0 15px;
   border-radius: 20px;
+  position: relative;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -81,10 +86,13 @@ main {
     align-items: flex-end;
     height: 155px; }
     .sectionPokemonContainer .sectionImage p {
-      line-height: 0px;
+      position: absolute;
+      top: 10px;
+      right: 17px;
       font-size: 15px;
       font-weight: 700;
-      color: rgba(0, 0, 0, 0.07); }
+      color: rgba(0, 0, 0, 0.07);
+      margin: 0; }
     .sectionPokemonContainer .sectionImage img {
       width: 166px;
       height: 125px;
@@ -99,9 +107,13 @@ main {
   left: 100%;
   overFlow: scroll;
   transition: all 1s ease; }
+  #modal .inactive {
+    display: none; }
   #modal .background {
     position: absolute;
     width: 100%;
+    left: 0;
+    top: 0;
     height: 100%;
     overflow: hidden; }
     #modal .background::after {
@@ -135,7 +147,7 @@ main {
     align-items: center;
     cursor: pointer;
     border-radius: 50%;
-    border: 3px solid rgba(255, 255, 255, 0.35);
+    border: 3px solid #efefef;
     background-color: #fff; }
     #modal #back img {
       width: 20px;
@@ -218,3 +230,135 @@ main {
   line-height: 100%; }
   .charElement:last-of-type {
     margin-bottom: 0; }
+
+@media screen and (min-width: 768px) {
+  body {
+    background-image: linear-gradient(180deg, #FFFFFF 0%, #EAEAEA 100%);
+    min-height: 100vh; }
+  .opacityOnCard {
+    opacity: 0.25;
+    transition: all 0.5s ease; }
+  .onScroll {
+    overflow: auto; }
+  .container {
+    width: 1366px;
+    margin: 0 auto; }
+    .container h1 {
+      margin-left: 40px; }
+  main {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap; }
+  .sectionPokemonContainer {
+    width: 232px;
+    margin-left: 20px; }
+    .sectionPokemonContainer .sectionText {
+      max-width: 50%; }
+    .sectionPokemonContainer .sectionImage {
+      max-width: 50%; }
+      .sectionPokemonContainer .sectionImage img {
+        width: 115px;
+        height: 125px;
+        max-width: 100%; }
+  .containerButton {
+    width: 50%; }
+  #modal {
+    width: 720px;
+    height: calc(100vh - 75px);
+    top: 30px;
+    left: unset;
+    right: calc((100vw - 1360px) / 2);
+    border-radius: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    overflow: hidden; }
+    #modal .inactive {
+      background-color: #efefef;
+      background-image: url("images/pokeballModalD.svg");
+      background-repeat: no-repeat;
+      background-position: right top;
+      height: 100%;
+      text-transform: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      transition: all 0.5s ease; }
+      #modal .inactive span {
+        width: 471px;
+        margin: 140px auto 60px;
+        line-height: 42px;
+        color: #000;
+        font-size: 35px;
+        text-align: center; }
+      #modal .inactive img {
+        width: 65%;
+        height: auto;
+        position: absolute;
+        bottom: 0;
+        right: 0; }
+    #modal .active {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 100%;
+      top: 0;
+      z-index: 1;
+      transition: all 0.5s ease; }
+    #modal .background {
+      top: 0;
+      left: 0; }
+      #modal .background #bgImage {
+        width: 1163px;
+        transform: translate(-17%, -17%); }
+      #modal .background::after {
+        background-size: 600px 580px; }
+    #modal #back {
+      width: 55px;
+      height: 55px;
+      top: unset;
+      bottom: calc(100% - 338px - 40px - 55px);
+      left: 30px;
+      opacity: 0;
+      transition: all 0.5s ease;
+      z-index: 1; }
+      #modal #back img {
+        width: 30px;
+        height: 15px; }
+    #modal .charPokemon {
+      margin-top: 338px;
+      min-height: calc(100% - 338px); }
+      #modal .charPokemon .status {
+        width: 490px;
+        margin: 0 auto; }
+        #modal .charPokemon .status .name-id {
+          line-height: 119.5%; }
+          #modal .charPokemon .status .name-id #namePokemon {
+            font-size: 50px; }
+        #modal .charPokemon .status .char {
+          margin-bottom: 35px; }
+          #modal .charPokemon .status .char div .titleChar, #modal .charPokemon .status .char span {
+            font-size: 30px;
+            line-height: 119.5%; }
+          #modal .charPokemon .status .char div span {
+            min-width: 111px;
+            height: 66px;
+            padding: 15px 25px; }
+    #modal.on {
+      left: unset;
+      right: calc((100vw - 1360px) / 2);
+      overflow: auto;
+      overflow-x: hidden; }
+      #modal.on .active {
+        display: block;
+        height: 100%;
+        left: 0; }
+      #modal.on #back {
+        opacity: 1;
+        transition-delay: 1.5s; }
+      #modal.on .inactive {
+        opacity: 0; } }
+
+@media screen and (min-width: 1900px) {
+  #modal .inactive img {
+    width: 100%;
+    height: 744px; } }

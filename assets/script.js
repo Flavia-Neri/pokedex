@@ -66,7 +66,7 @@ function render(char){
     }
     main.appendChild(sectionPokemonContainer);
     sectionPokemonContainer.addEventListener("click", function(event){
-        modal(event, char);
+        modal(event, char, char.id - 1);
     });
 }
 function convertToObj(response){
@@ -79,7 +79,6 @@ function listPokemons(jsonObj){
     .then((pokemons)=>pokemons.forEach(pokemon=> render(pokemon)))
     .then(() => {
         button.classList.remove('loading');
-        console.log(counterGeneration)
     });
     
 }
@@ -106,8 +105,10 @@ function startLoad(){
 
 }
 
-function modal(event,char){
-    document.body.style.overflow= 'hidden';
+function modal(event,char, index){
+    document.querySelectorAll('.displayMain .sectionPokemonContainer').forEach(e=>e.classList.add("opacityOnCard"))
+    document.querySelector('.displayMain').children[index].classList.remove("opacityOnCard");
+    document.body.classList.add('onScroll');
 
     sectionModal.classList.add("on");
 
@@ -153,8 +154,10 @@ function modal(event,char){
 
     });
 }
+
 function back(){
-    document.body.style.overflow= '';
+    document.querySelectorAll('.displayMain .sectionPokemonContainer').forEach(e=>e.classList.remove("opacityOnCard"))
+    document.body.classList.remove("onScroll");
     sectionModal.classList.remove("on");
 }
 document.addEventListener("DOMContentLoaded", startLoad);

@@ -8,13 +8,17 @@ body{
     color:#fff;
     padding:0;
     margin:0;
-}
-main{
-    padding:20px;
     h1{
         color:rgb(69,69,69);
         font-size:30px;
+        margin-left:20px;
     }
+}
+main{
+    padding:20px;
+}
+.onScroll{
+    overflow:hidden;
 }
 .containerButton{
     display: flex;
@@ -55,6 +59,7 @@ main{
     margin-bottom:20px;
     padding:0 15px;
     border-radius:20px;
+    position:relative;
     cursor:pointer;
     display:flex;
     align-items:center;
@@ -93,10 +98,13 @@ main{
         align-items: flex-end;
         height: 155px;
         p{
-            line-height: 0px;
+            position: absolute;
+            top: 10px;
+            right: 17px;
             font-size:15px;
             font-weight: 700;
             color:rgba(0,0,0,0.07);
+            margin: 0;
         }
         img{
             width:166px;
@@ -114,9 +122,14 @@ main{
     left: 100%;
     overFlow: scroll;
     transition: all 1s ease;
+    .inactive{
+        display: none;
+    }
     .background{
         position: absolute;
         width: 100%;
+        left: 0;
+        top: 0;
         height: 100%;
         overflow: hidden;
         &::after{
@@ -153,7 +166,7 @@ main{
         align-items: center;
         cursor:pointer;
         border-radius:50%;
-        border:3px solid rgba(255, 255, 255, 0.35);
+        border: 3px solid rgba(239, 239, 239, 1);
         background-color:#fff;
         img{
             width:20px;
@@ -256,3 +269,175 @@ main{
             margin-bottom: 0;
         }
     }
+@media screen and(min-width:768px){
+    body{
+        background-image: linear-gradient(180deg, #FFFFFF 0%, #EAEAEA 100%);
+        min-height: 100vh;
+    }
+    .opacityOnCard{
+        opacity:0.25;
+        transition:all 0.5s ease;
+    }
+    .onScroll{
+        overflow: auto;
+    }
+    .container{
+        width: 1366px;
+        margin: 0 auto;
+        h1{
+            margin-left: 40px;
+        }
+    }
+    main{
+        width:50%;
+        display:flex;
+        flex-wrap: wrap;
+    }
+    .sectionPokemonContainer{
+        width: 232px;
+        margin-left: 20px;
+        .sectionText{
+            max-width: 50%;
+        }
+        .sectionImage{
+            max-width: 50%;
+            img{
+                width: 115px;
+                height: 125px;
+                max-width: 100%;
+            }
+        }
+    }
+    .containerButton{
+        width:50%;
+    }
+    #modal{
+        width: 720px;
+        height: calc(100vh - 75px);
+        top:30px;
+        left: unset;
+        right: calc((100vw - 1360px) / 2);
+        border-radius:40px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        overflow: hidden;
+        .inactive{
+            background-color: rgba(239,239,239,1);
+            background-image: url("images/pokeballModalD.svg");
+            background-repeat: no-repeat;
+            background-position:right top;
+            height:100%;
+            text-transform: none;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            overflow-x: hidden;
+            transition: all 0.5s ease;
+            span{
+                width:471px;
+                margin: 140px auto 60px;
+                line-height:42px;
+                color:#000;
+                font-size:35px;
+                text-align:center;
+            }
+            img{
+                width: 65%;
+                height: auto;
+                position:absolute;
+                bottom:0;
+                right: 0;
+            }
+        }
+        .active{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 100%;
+            top: 0;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+        .background{
+            top: 0;
+            left: 0;
+            #bgImage{
+                width:1163px;
+                transform: translate(-17%, -17%);
+            }
+            &::after{
+                background-size: 600px 580px;
+            }
+        }
+        #back{
+            width:55px;
+            height:55px;
+            top:unset;
+            bottom: calc(100% - 338px - 40px - 55px);
+            left:30px;
+            opacity: 0;
+            transition:all 0.5s ease;
+            z-index: 1;
+            img{
+                width:30px;
+                height:15px;
+            }
+        }
+        .charPokemon{
+            margin-top: 338px;
+            min-height: calc(100% - 338px);
+            .status{
+                width:490px;
+                margin:0 auto; 
+                .name-id{
+                    line-height: 119.5%;
+                    #namePokemon{
+                        font-size:50px;
+                    }
+                }
+                .char{
+                    margin-bottom:35px;
+                    div .titleChar,span{
+                        font-size:30px;
+                        line-height: 119.5%;
+                    }
+                    div{
+                        span{
+                            min-width: 111px;
+                            height:66px;
+                            padding:15px 25px;
+                        }
+                    }
+                }
+            }
+        }
+        &.on{
+            left: unset;
+            right: calc((100vw - 1360px) / 2);
+            overflow: auto;
+            overflow-x: hidden;
+            .active{
+                display: block;
+                height:100%;
+                left: 0;
+            }
+            #back{
+                opacity:1;
+                transition-delay: 1.5s;
+            }
+            .inactive{
+                opacity: 0;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1900px){
+    #modal{
+        .inactive{
+            img{
+                width:100%;
+                height: 744px;
+            }
+        }
+    }
+}

@@ -9,51 +9,61 @@
     <title>Pokedex</title>
 </head>
 <body>
-    <main id="mainTag" class="displayMain">
+    <div class="container">
         <h1>Pokedex</h1>
-    </main>
-    
-    <div class="containerButton">
-        <button class="displayMain">
-            <img src="assets/images/pokeball.png">
-        </button>
+        <main id="mainTag" class="displayMain"></main>
+        
+        <div class="containerButton">
+            <button class="displayMain">
+                <img src="assets/images/pokeball.png">
+            </button>
+        </div>
+        <section id="modal">
+            <div class="inactive">
+                <span>
+                    Selecione um pokémon para ver suas informações!
+                </span>
+                <img src="assets/images/pokeChar.svg" alt="">
+            </div>
+            <div class="active">
+
+                <div class="background">
+                    <img id="bgImage" src="" alt="">
+                </div>
+                <div id="back">
+                    <img src="assets/images/arrow.svg">
+                </div>
+                <div class="charPokemon">
+                    <div class="image">
+                        <img id="pokemonImg">
+                    </div>
+                    <div class="status">
+                        <div class="name-id">
+                            <h1 id="namePokemon"></h1>
+                            <h3 id ="idPokemon"></h3>
+                        </div>
+                        <div class="char">
+                            <div class="type" id="divType">
+                                <h3 class="titleChar">Type:</h3>
+                            </div>
+                            <div class="height">
+                                <h3 class="titleChar">Height:</h3>
+                                <span class="charElement" data-height></span>
+                            </div>
+                            <div class="weight">
+                                <h3 class="titleChar">Weight:</h3>
+                                <span class="charElement" data-weight></span>
+                            </div>
+                            <div class="abilities" id="abilities">
+                                <h3 class="titleChar">Abilities:</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <section id="modal">
-        <div class="background">
-            <img id="bgImage" src="" alt="">
-        </div>
-        <div id="back">
-            <img src="assets/images/arrow.svg">
-        </div>
-        <div class="charPokemon">
-            <div class="image">
-                <img id="pokemonImg">
-            </div>
-            <div class="status">
-                <div class="name-id">
-                    <h1 id="namePokemon"></h1>
-                    <h3 id ="idPokemon"></h3>
-                </div>
-                <div class="char">
-                    <div class="type" id="divType">
-                        <h3 class="titleChar">Type:</h3>
-                    </div>
-                    <div class="height">
-                        <h3 class="titleChar">Height:</h3>
-                        <span class="charElement" data-height></span>
-                    </div>
-                    <div class="weight">
-                        <h3 class="titleChar">Weight:</h3>
-                        <span class="charElement" data-weight></span>
-                    </div>
-                    <div class="abilities" id="abilities">
-                        <h3 class="titleChar">Abilities:</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <script src="assets/script.js"></script>
 </body>
 </html>
