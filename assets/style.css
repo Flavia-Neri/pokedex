@@ -15,16 +15,31 @@ main {
     color: #454545;
     font-size: 30px; }
 
-button {
-  border: none;
-  background-color: transparent;
-  margin-left: 42%; }
-  button img {
-    width: 40px;
-    height: 40px; }
-  button:focus, button:active {
-    outline: none;
-    box-shadow: none; }
+.containerButton {
+  display: flex;
+  width: 100%;
+  justify-content: center; }
+  .containerButton button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 50px; }
+    .containerButton button img {
+      width: 40px;
+      height: 40px; }
+    .containerButton button:focus, .containerButton button:active {
+      outline: none;
+      box-shadow: none; }
+    .containerButton button.off {
+      display: none; }
+    .containerButton button.loading {
+      pointer-events: none; }
+      .containerButton button.loading img {
+        animation: loading 1s linear infinite; }
+
+@keyframes loading {
+  to {
+    transform: rotate(360deg); } }
 
 .sectionPokemonContainer {
   width: 100%;
@@ -32,6 +47,7 @@ button {
   margin-bottom: 20px;
   padding: 0 15px;
   border-radius: 20px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -74,19 +90,131 @@ button {
       height: 125px;
       object-fit: contain; }
 
-.modal {
+#modal {
   position: fixed;
+  top: 0;
   width: 100%;
-  height: 100%;
-  background-color: blue; }
-  .modal .back {
+  height: 100vh;
+  background-color: #fff;
+  left: 100%;
+  overFlow: scroll;
+  transition: all 1s ease; }
+  #modal .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; }
+    #modal .background::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.05);
+      background-image: url("images/pokeballModal.svg");
+      background-repeat: no-repeat;
+      background-position: top right;
+      position: absolute;
+      left: 0;
+      top: 0; }
+    #modal .background #bgImage {
+      width: 1005px;
+      height: 1005px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      filter: blur(50px); }
+  #modal #back {
     width: 35px;
     height: 35px;
     position: absolute;
-    margin: 20px;
+    left: 20px;
+    top: 20px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    border-radius: 100px;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
     border: 3px solid rgba(255, 255, 255, 0.35);
     background-color: #fff; }
+    #modal #back img {
+      width: 20px;
+      height: 10px; }
+  #modal .charPokemon {
+    width: 100%;
+    min-height: 40vh;
+    margin-top: 60vh;
+    position: relative;
+    border-radius: 20px 20px 0px 0px;
+    background-color: #fff;
+    transform: translateY(40vh);
+    transition: all 0.8s ease 0.7s; }
+    #modal .charPokemon .image {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% - 40px);
+      transform: translateX(-50%);
+      display: flex;
+      align-items: flex-end; }
+      #modal .charPokemon .image #pokemonImg {
+        width: 320px;
+        height: 320px;
+        object-fit: contain;
+        object-position: center bottom;
+        filter: blur(5px);
+        transition: all 0.5s ease 0.7s; }
+    #modal .charPokemon .status {
+      color: #202020;
+      line-height: 23.9px; }
+      #modal .charPokemon .status .name-id {
+        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
+        #modal .charPokemon .status .name-id #namePokemon {
+          font-size: 40px;
+          line-height: 47.8px;
+          margin: 0;
+          text-transform: capitalize; }
+        #modal .charPokemon .status .name-id #idPokemon {
+          margin: 0;
+          font-weight: 500;
+          font-size: 20px; }
+      #modal .charPokemon .status .char {
+        padding: 0 20px;
+        margin-top: 60px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; }
+        #modal .charPokemon .status .char div {
+          margin-bottom: 45px; }
+        #modal .charPokemon .status .char .abilities {
+          width: 100%; }
+          #modal .charPokemon .status .char .abilities span {
+            margin-right: 10px; }
+  #modal.on {
+    left: 0; }
+    #modal.on .charPokemon {
+      transform: translateY(0); }
+      #modal.on .charPokemon .image #pokemonImg {
+        filter: blur(0px); }
+
+.titleChar {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0;
+  line-height: 119.5%; }
+
+.charElement {
+  display: inline-block;
+  min-width: 61px;
+  width: fit-content;
+  height: 28px;
+  margin: 10px 0;
+  background-color: rgba(0, 0, 0, 0.07);
+  border-radius: 100px;
+  padding: 7px 15px;
+  text-align: center;
+  line-height: 100%; }
+  .charElement:last-of-type {
+    margin-bottom: 0; }
